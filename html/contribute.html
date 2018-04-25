@@ -13,16 +13,17 @@
       <form action="./php/contribute.php" method="post">
         Name:<br> <input type="text" name="Name"> <br>
         Location:<br> <input type="text" name="Location"> <br>
-        Email:<br> <input type="number" name="Email"> <br>
-        Type:<br> <input type="number" name="Type"> <br>
-        <input type="submit" value="Submit">
-        <br>
+        Email:<br> <input type="number" name="Email"> <br><br>
+        
+        
+		<input type="radio" name="type" value="social"> Social
+		<input type="radio" name="type" value="academic"> Academic
+		<input type="radio" name="type" value="professional"> Professional
+		<input type="radio" name="type" value="other"> Other<br><br>
+        <input type="button" value="Login" onclick="window.location.href='./html/contribute.html'" />
+		<br>
         <br>
 
-        <input type="button" value="Login" onclick="window.location.href='./html/contribute.html'" />
-		<input type="radio" name="type" value="social"> Social<br>
-		<input type="radio" name="type" value="academic"> Academic<br>
-		<input type="radio" name="type" value="other"> Other
       </form>
     </center>
   </div>
