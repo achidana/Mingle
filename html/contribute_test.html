@@ -14,8 +14,11 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
- 
+ <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
 </head>
+
+
 
 <body>
 
@@ -39,7 +42,47 @@
  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
 
+
+<div class="center hideform">
+    <button id="close" style="float: right;">X</button>
+    <form action="../php/contribute.php" method="post">
+        
+      Name:<br> <input type="text" name="name" placeholder="Event Name"> <br>
+      Email:<br> <input type="text" name="email" placeholder="username@purdue.edu"> <br>
+      Start Date:<br> <input type="text" name="start" placeholder="YYYY-MM-DD"><br>
+      End Date:<br> <input type="text" name="start" placeholder="YYYY-MM-DD"><br>
+      Start Time:<br> <input type="text" name="start" placeholder="HH:MM:SS"><br>
+      End Time:<br> <input type="text" name="end" placeholder="HH:MM:SS"><br>
+      URL:<br> <input type="text" name="url" placeholder="www.url.com"><br><br>
+      
+
+    </form>
+</div>
+
+<button id="show">ADD EVENT</button>
+
+<script >
+  
+$('#show').on('click', function () {
+    if(passLat==0)
+    {
+      alert("Please select a location");
+      return;
+    }
+    $('.center').show();
+    $(this).hide();
+})
+
+$('#close').on('click', function () {
+    $('.center').hide();
+    $('#show').show();
+})
+
+</script>
+
 <script>
+var passLat=0;
+var passLong=0;
 
 function contributeMap()
 {
@@ -65,7 +108,7 @@ function contributeMap()
 //console.log("lat= "+currentlat);
 var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 30, lng: 30},
-          zoom: 13,
+          zoom: 10,
           mapTypeId: 'roadmap'
         });
 
@@ -88,6 +131,73 @@ if (navigator.geolocation) {
 //     currentlat=position.coords.latitude;
 //     currentlong=position.coords.longitude;
 }
+
+        // Create the search box and link it to the UI element.
+var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+
+// Bias the SearchBox results towards current map's viewport.
+      markers=[];
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            // var icon = {
+            //   url: place.icon,
+            //   size: new google.maps.Size(71, 71),
+            //   origin: new google.maps.Point(0, 0),
+            //   anchor: new google.maps.Point(17, 34),
+            //   scaledSize: new google.maps.Size(25, 25)
+            // };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              //icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+              passLat=place.geometry.location.lat();
+              passLong=place.geometry.location.lng();
+
+              console.log("paslat="+passLat);
+              console.log("passLong="+passLong);
+
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+
+
 }
 
 
@@ -95,6 +205,8 @@ if (navigator.geolocation) {
 
 
 </script>
+
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-QadoATYQaW-y6VCu-pz4OVY7RyGSntk&libraries=places&callback=contributeMap"
          async defer></script>
  
