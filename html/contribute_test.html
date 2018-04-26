@@ -49,17 +49,27 @@
         
       Name:<br> <input type="text" name="name" placeholder="Event Name"> <br>
       Email:<br> <input type="text" name="email" placeholder="username@purdue.edu"> <br>
-      Start Date:<br> <input type="text" name="start" placeholder="YYYY-MM-DD"><br>
-      End Date:<br> <input type="text" name="start" placeholder="YYYY-MM-DD"><br>
-      Start Time:<br> <input type="text" name="start" placeholder="HH:MM:SS"><br>
-      End Time:<br> <input type="text" name="end" placeholder="HH:MM:SS"><br>
+      Start Date:<br> <input type="text" name="startDate" placeholder="YYYY-MM-DD"><br>
+      End Date:<br> <input type="text" name="endDate" placeholder="YYYY-MM-DD"><br>
+      Start Time:<br> <input type="text" name="startTime" placeholder="HH:MM:SS"><br>
+      End Time:<br> <input type="text" name="endTime" placeholder="HH:MM:SS"><br>
       URL:<br> <input type="text" name="url" placeholder="www.url.com"><br><br>
+
+      <input type="hidden" id="lat_hid" name="lat">
+       <input type="hidden" id="lng_hid" name="lng">
+
       
 
     </form>
 </div>
 
+
 <button id="show">ADD EVENT</button>
+
+<script >
+document.getElementById("lat_hid").innerHTML=passLat;
+document.getElementById("lng_hid").innerHTML=passLong;
+</script>
 
 <script >
   
