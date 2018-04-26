@@ -2,23 +2,59 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" content="initial-scale=1.0, user-scalable=no" />
-	<link rel="stylesheet" href="css/css.css" />
-	<title>Contribute to Mingle</title>
+  <meta charset="utf-8" content="initial-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="../css/css.css" />
+  <title>Contribute to Mingle</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
 </head>
 
 <body>
+
+<!-- NAVIGATION BAR -->
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+      <ul class="nav navbar-nav">
+      <li><a href="../index.html">Home</a></li>
+          </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="./contribute.html"> CONTRIBUTE</a></li>
+      <li><a href="./mingle.html"> MINGLE</a></li>
+    </ul>
+  </div>
+</nav>
+
+<h1 align = "center">Create an event</h1>
+
   <div>
     <center>
       <form action="../php/contribute.php" method="post">
         Name:<br> <input type="text" name="Name"> <br>
-        Location:<br> <input type="text" name="Location"> <br>
-        Email:<br> <input type="number" name="Email"> <br>
-        Type:<br> <input type="number" name="Type"> <br>
-        <input type="submit" value="Submit">
-        <input type="button" value="Login" onclick="window.location.href='./contribute.html'" />
+      Email:<br> <input type="text" name="Email"> <br><br>
+
+
+
+    <input type="radio" name="type" value="social"> Social
+    <input type="radio" name="type" value="academic"> Academic
+    <input type="radio" name="type" value="professional"> Professional
+    <input type="radio" name="type" value="other"> Other<br><br>
+        <input type="button" value="Login" onclick="window.location.href='./html/contribute.html'" />
+    <br>
+        <br>
+
       </form>
     </center>
   </div>
+
+
+
 </body>
 </html>
