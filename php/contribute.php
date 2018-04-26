@@ -15,11 +15,27 @@ if ($conn->connect_error) {
 
 $name = $_POST['name'];
 $email = $_POST['email'];
-$start = $_POST['startDate'] + " " + $_POST['startTime'];
-$end = $_POST['endDate'] + " " + $_POST['endTime'];
+
+$startDate = $_POST['startDate'];
+$startTime = $_POST['startTime'];
+$start = "$startDate $startTime";
+
+$endDate = $_POST['$endDate'];
+$endTime = $_POST['$endTime'];
+$end = "$endDate $endTime";
+
 $url = $_POST['url'];
 $lat = (float) $_POST['lat'];
 $lng = (float) $_POST['lng'];
+
+echo "start: ";
+echo $start;
+echo "end: ";
+echo $end;
+echo "lat: ";
+echo $_POST['lat'];
+echo "lng: ";
+echo $_POST['lng'];
 
 $sql = "INSERT INTO mingle.events_info (name,email,start,end,url,lat,lng) VALUES ('$name', '$email', '$start','$end','$email',$lat,$lng)";
 
