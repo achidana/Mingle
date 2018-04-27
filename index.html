@@ -23,9 +23,7 @@
   <div id="bar"></div>
 
 
-
-
-<h1 align = "center"  style="color:black;">Welcome To Mingle</h1>
+<h1 align = "center"  style="color:black;" id="welcome">Welcome To Mingle</h1>
 
 <style>
 img {
@@ -43,9 +41,9 @@ img {
 
 <body style="background-color:lavender;">
 
-  <div>
+  <div id="form">
     <center>
-      <form >
+      <form>
         Name:<br> <input type="text" name="Name" id="naam"> <br>
         Email:<br> <input type="text" name="Email" id="e"> <br>
         Password:<br> <input type="password" name="Password" id="pwd"> <br><br>
@@ -73,13 +71,13 @@ function signIn() {
           password: document.getElementById("pwd").value
           },
           function(data, status) {
-            alert("Signed Up !");
+            alert("Signed Up!");
             //alert("data: " + data);
       });
 
     }
     else {
-      alert("PLEASE PUT VALID EMAIL!");
+      alert("Please put in valid email! (hint: ...@purdue.edu)");
     }
 
 }
@@ -90,28 +88,35 @@ function signIn() {
 
 <script>
 
+var n1 = document.getElementById("naam").value;
+var e1 = document.getElementById("e").value;
+var p1 = document.getElementById("pwd").value;
+
 function log() {
-  $.post("./php/login.php",{
-      name: document.getElementById("naam").value,
-      email: document.getElementById("e").value,
-      password: document.getElementById("pwd").value
-      },
-      function(data, status) {
-        data = JSON.parse(data);
-        // alert(data);
-        // console.log(data);
-        if(data == "Login successful") {
-          alert("Login successful");
-
-          document.getElementById("bar").innerHTML = '<nav class="navbar navbar-inverse"> <div class="container-fluid"> <ul class="nav navbar-nav"> <li class="active"><a href="./index.html">Logout</a></li> </ul> <ul class="nav navbar-nav navbar-right"> <li><a href="./html/contribute_test.html"> CONTRIBUTE</a></li> <li><a href="./html/mingle.html"> MINGLE</a></li> </ul> </div> </nav>';
-
-
-        }
-        else {
-            alert("OOPS, LOGIN FAILED");
-        }
-
-    });
+  // if(n1=="" || e1=="" || p1=="") {
+  //   alert("Oops2, login failed! Please make sure your name, email AND password are correct.");
+  // }
+  // else {
+    $.post("./php/login.php",{
+        name: document.getElementById("naam").value,
+        email: document.getElementById("e").value,
+        password: document.getElementById("pwd").value
+        },
+        function(data, status) {
+          data = JSON.parse(data);
+          // alert(data);
+          // console.log(data);
+          if(data == "Login successful") {
+            alert("Login successful");
+            document.getElementById("bar").innerHTML ='<nav class="navbar navbar-inverse"> <div class="container-fluid"> <ul class="nav navbar-nav"> <li class="active"><a href="./index.html">Log Out</a></li> </ul> <ul class="nav navbar-nav navbar-right"> <li><a href="./html/contribute_test.html"> CONTRIBUTE</a></li> <li><a href="./html/mingle.html"> MINGLE</a></li> </ul> </div> </nav>';
+            document.getElementById("welcome").innerHTML="Welcome "+document.getElementById("naam").value;
+            document.getElementById("form").style.display = "none";
+          }
+          else {
+              alert("Oops1, login failed! Please make sure your name, email AND password are correct.");
+          }
+      });
+    //}
 }
 
   </script>

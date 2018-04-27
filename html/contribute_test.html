@@ -81,6 +81,17 @@ function makeAjaxCall() {
   //     }
   // });
 
+  var check=document.getElementById("e").value;
+  var check1=document.getElementById("naam").value;
+  var check2=document.getElementById("sdate").value;
+    var check3=document.getElementById("edate").value;
+      var check4=document.getElementById("stime").value;
+        var check5=document.getElementById("etime").value;
+          var check6=document.getElementById("u").value;
+
+  if(check.includes("@purdue.edu") && check1!=""&& check2!=""&& check3!=""&& check4!=""&& check5!="")
+  {
+
     $.post("../php/contribute.php",
       {
         // var x= document.getElementById("naam").value;
@@ -98,6 +109,12 @@ function makeAjaxCall() {
           alert("Your event has been added! See you there!");
           //alert("data: " + data);
         });
+
+
+      }
+      else {
+          alert("INVALID INFO")
+      }
 
 }
 
