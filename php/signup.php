@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 
 $name = $_POST['name'];
 $email = $_POST['email'];
-$pwd = $_POST['pwd'];
+$pwd = $_POST['password'];
 
 $sql = "INSERT INTO mingle.user_info (name,email,password) VALUES ('$name','$email','$pwd')";
 
@@ -22,7 +22,6 @@ while($row = mysqli_fetch_assoc($result))
       $test[] = $row;
 
 echo json_encode($test);
-
 
   if($insert) {
     // echo "inserted";

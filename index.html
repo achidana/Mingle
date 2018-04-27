@@ -11,6 +11,7 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
   <!-- Program Modules -->
   <script type="text/javascript" src="../js/map.js"></script>
@@ -54,18 +55,12 @@ img {
 
 <body style="background-color:lavender;">
 
-
-<h3 align = "center">Sign Up</h1>
-
   <div>
     <center>
       <form >
         Name:<br> <input type="text" name="Name" id="naam"> <br>
-
-      Email:<br> <input type="text" name="Email" id="e"> <br>
-
-	  Password:<br> <input type="password" name="Password" id="pwd"> <br><br>
-
+        Email:<br> <input type="text" name="Email" id="e"> <br>
+        Password:<br> <input type="password" name="Password" id="pwd"> <br><br>
         <input type="button" value="Sign Up" id="signUp" onclick="signIn()" />
         <input type="button" value="Login" id="login" onclick="log()" />
 
@@ -80,63 +75,51 @@ img {
 
   <script>
 
-function signIn()
-{
-
+function signIn() {
   var check=document.getElementById("e").value;
-  if(check.includes("@purdue.edu"))
+  if(check.includes("@purdue.edu")) {
 
-  {
-
-  $.post("../php/signup.php",
-    {
-
-
-
-      name: document.getElementById("naam").value,
-      email: document.getElementById("e").value,
-      password: document.getElementById("pwd").value
-
-    },
-      function(data, status) {
-        alert("Signed Up !");
-        //alert("data: " + data);
+      $.post("./php/signup.php",{
+          name: document.getElementById("naam").value,
+          email: document.getElementById("e").value,
+          password: document.getElementById("pwd").value
+          },
+          function(data, status) {
+            alert("Signed Up !");
+            //alert("data: " + data);
       });
 
     }
     else {
-      alert("PLEASE PUT VALID EMAIL!")
+      alert("PLEASE PUT VALID EMAIL!");
     }
 
 }
 
+</script>
 
 
 
-  </script>
+<script>
 
-
-
-  <script>
-
-function log()
-{
-  $.post("../php/login.php", async=false,
-      function(data, status)
-      {
-        if(data=="Login successful")
-        {
+function log() {
+  $.post("./php/login.php",{
+      name: document.getElementById("naam").value,
+      email: document.getElementById("e").value,
+      password: document.getElementById("pwd").value
+      },
+      function(data, status) {
+        data = JSON.parse(data);
+        // alert(data);
+        // console.log(data);
+        if(data == "Login successful") {
           alert("OK");
-
         }
         else {
-
             alert("OOPS");
+        }
 
-
-      }
-
-});
+    });
 }
 
   </script>

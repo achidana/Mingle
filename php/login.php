@@ -1,4 +1,5 @@
 <?php
+
 $DB_NAME = "mingle";
 $DB_USER = "mingle";
 $DB_PASSWORD = "cs252mingle";
@@ -11,26 +12,37 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$name = $_POST['name'];
 $email = $_POST['email'];
-$pwd = $_POST['pwd'];
+$pwd = $_POST['password'];
 
-$num = "SELECT COUNT(*) FROM mingle.user_info
-WHERE email LIKE 'test1@purdue.edu';";
-
-if($num == 1) {
   $sql = "SELECT * FROM mingle.user_info
-  WHERE email LIKE '$email';";
+  WHERE name LIKE '{$name}'
+  AND email LIKE '{$email}'
+  LIMIT 1;";
 
   $result = $conn->query($sql);
-  if($pwd == $result['password']) {
+  while($row = mysqli_fetch_assoc($result))
+    $test[] = $row;
+  // echo json_encode($test);
+
+  //echo json_encode("Login successful");
+
+  if(sizeof($test) == 1 && $pwd == $test[0]['password']) {
       echo json_encode("Login successful");
   }
+  else {
+    echo json_encode("Login failed");
+  }
 
-  $conn->close();
-}
-else {
-  echo json_encode("Login failed");
-  $conn->close();
-}
+  // if($result) {
+  //   // echo "inserted";
+  //   console.log("successful");
+  // }
+  // else {
+  //   console.log("failed");
+  // }
+
+$conn->close();
 
 ?>
