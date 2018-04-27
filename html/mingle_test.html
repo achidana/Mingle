@@ -27,8 +27,8 @@
       <li><a href="../index.html">Home</a></li>
           </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li class="active"><a href="./contribute.html"> CONTRIBUTE </a></li>
-      <li><a href="./mingle.html"> MINGLE </a></li>
+      <li class="active"><a href="./mingle.html"> MINGLE </a></li>
+      <li><a href="./contribute.html"> CONTRIBUTE </a></li>
     </ul>
   </div>
 </nav>
@@ -39,6 +39,7 @@
 
 
 
+// jQUERY FOR GETTING INFO
 <script>
 //document.getElementById("lat_hid").innerHTML="asdas";
 //document.getElementById("lng_hid").value=(passLong.toString());
@@ -57,24 +58,24 @@ function makeAjaxCall() {
   //     }
   // });
 
-          $.post("../php/mingle.php", async=false,
-              function(data, status) {
-                data = JSON.parse(data)
-                // alert(data[0]["lat"]);
-                // alert("TYPE: " + typeof data);
+  var data = [{"id":"7","name":"Pancake Night","start":"2018-04-24 21:00:00","end":"2018-04-24 22:00:00","url":"www.purdue.edu","email":"shreveclub@purdue.edu","lat":"40.3","lng":"-86.7"},{"id":"8","name":"Movie Night","start":"2018-04-27 20:00:00","end":"2018-04-27 21:00:00","url":"www.purdue.edu","email":"hillyclub@purdue.edu","lat":"40.5","lng":"-86.9"},{"id":"9","name":"Study Night","start":"2018-04-29 18:30:00","end":"2018-04-29 20:30:00","url":"www.purdue.edu","email":"earhartclub@purdue.edu","lat":"40.4","lng":"-86.8"},{"id":"87","name":"ou","start":"2019-05-20 10:00:00","end":"2019-05-20 14:00:00","url":"hj","email":"hj","lat":"30.0289","lng":"31.4086"}];
 
-//                 var avgLat = 0;
-//                 var avgLng = 0;
-//                 var i = 0;
-//
-//                 for(i = 0; i < data.length; i++) {
-//                   avgLat += parseFloat(data[i]['lat']);
-//                   avgLng += parseFloat(data[i]['lng']);
-//                 }
-//                 avgLat = avgLat/parseFloat(i);
-//                 avgLng = avgLng/parseFloat(i);
-//
-//                 alert("lat: " + avgLat + " lng: " + avgLng;
+
+          $.post("../php/mingle.php",
+              function(data, status) {
+                alert(data);
+                console.log(data);
+
+                var avgLat = 0;
+                var avgLng = 0;
+                for(var i = 0; i < data.length; i++) {
+                  avgLat += parseFloat(data[i]['lat']);
+                  avgLng += parseFloat(data[i]['lng']);
+                }
+                avgLat = avgLat/parseFloat(i);
+                avgLng = avgLng/parseFloat(i);
+
+                alert("lat: " + avgLat + " lng: " + avgLng);
 
                 // var map = new google.maps.Map(document.getElementById('map'), {
                 //     center: {lat: avgLat, lng: avgLng},
@@ -82,11 +83,25 @@ function makeAjaxCall() {
                 //     mapTypeId: 'roadmap'
                 // });
 
-                for(var i = 0; i < data.length; i++) {
-                        //var latlng = {lat: parseFloat(data[i]['lat']), lng: parseFloat(data[i]['lng'])};
-                        var latlng = new google.maps.LatLng(data[i]["lat"],data[i]["lng"]);
-                        createMarker(data, i, latlng);
-                  }
+                // for(var i = 0; i < data.length; i++) {
+                //         //var latlng = {lat: parseFloat(data[i]['lat']), lng: parseFloat(data[i]['lng'])};
+                //         var latlng = new google.maps.LatLng(data[i]['lat']),data[i]['lng']));
+                //         var m = new google.maps.Marker({
+                //             position: latlng,
+                //             map: map
+                //           });
+                //
+                //         m.setMap(map);
+                //
+                //         var info = new google.maps.InfoWindow({
+                //             content: '<IMG BORDER="0" ALIGN="Center"> <h3> Name of event: ' + data[i]['name'] + '</h3> <h4>Start: ' + data[i]['start'] + '</h4> <h4>End: '+ data[i]['end'] + '</h4>'
+                //         });
+                //
+                //         m.addListener('click', function(){
+                //             info.open(map, m)
+                //         });
+                //         info.close();
+                // }
               });
 
   //   $.get("../php/mingle.php",
@@ -120,23 +135,6 @@ function makeAjaxCall() {
 
 }
 
-function createMarker(data, i, latlng) {
-  var m = new google.maps.Marker({
-      position: latlng,
-      map: map
-  });
-
-  m.setMap(map);
-
-  var info = new google.maps.InfoWindow({
-      content: '<h3> Event name: ' + data[i]['name'] + '</h3> <h4>Start: ' + data[i]['start'] + '</h4> <h4>End: '+ data[i]['end'] + '</h4>'
-  });
-
-  m.addListener('click', function(){
-      info.open(map, m)
-  });
-  info.close();
-}
 
 </script>
 
@@ -162,6 +160,7 @@ $('#close').on('click', function () {
 </script> -->
 
 
+// MAKES THE MAP
 <script>
 var passLat=0;
 var passLong=0;
