@@ -24,10 +24,10 @@
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
       <ul class="nav navbar-nav">
-      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html">Logout</a></li>
           </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li class="active"><a href="./contribute.html"> CONTRIBUTE </a></li>
+      <li class="active"><a href="./contribute_test.html"> CONTRIBUTE </a></li>
       <li><a href="./mingle.html"> MINGLE </a></li>
     </ul>
   </div>
@@ -45,14 +45,14 @@
     <button id="close" style="float: right;">X</button>
     <form>
 
-		<h1> Add Event </h1>
-      Name:<br> <input type="text" name="name"color="yellow" placeholder="Event Name" id="naam">  <br>
-      Email:<br> <input type="text" name="email" placeholder="username@purdue.edu" id="e"> <br>
-      Start Date:<br> <input type="text" name="startDate" placeholder="YYYY-MM-DD" id="sdate"><br>
-      End Date:<br> <input type="text" name="endDate" placeholder="YYYY-MM-DD" id="edate"><br>
-      Start Time:<br> <input type="text" name="startTime" placeholder="HH:MM:SS" id=stime><br>
-      End Time:<br> <input type="text" name="endTime" placeholder="HH:MM:SS" id="etime"><br>
-      URL:<br> <input type="text" name="url" placeholder="www.url.com" id="u"><br><br>
+      <h1> Add Event </h1>
+        Name:<br> <input type="text" style="color:black;" name="name" placeholder="Event Name" id="naam">  <br>
+        Email:<br> <input type="text" style="color:black;"name="email" placeholder="username@purdue.edu" id="e"> <br>
+        Start Date:<br> <input type="text" style="color:black;" name="startDate" placeholder="YYYY-MM-DD" id="sdate"><br>
+        End Date:<br> <input type="text" style="color:black;" name="endDate" placeholder="YYYY-MM-DD" id="edate"><br>
+        Start Time:<br> <input type="text" style="color:black;" name="startTime" placeholder="HH:MM:SS" id=stime><br>
+        End Time:<br> <input type="text" style="color:black;" name="endTime" placeholder="HH:MM:SS" id="etime"><br>
+        URL:<br> <input type="text" style="color:black;" name="url" placeholder="www.url.com" id="u"><br><br>
 
       <!-- <input type="text" id="lat_hid" name="lat">
       <input type="text" id="lng_hid" name="lng"> -->
@@ -149,11 +149,10 @@ function contributeMap()
 
 //console.log("lat= "+currentlat);
 var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 30, lng: 30},
-          zoom: 10,
-          mapTypeId: 'roadmap'
-        });
-
+          center: {lat: 40.424301, lng: -86.921648},
+          zoom: 15,
+          mapTypeId: 'roadmap'
+        });
 
 if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
