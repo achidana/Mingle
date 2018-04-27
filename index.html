@@ -59,20 +59,87 @@ img {
 
   <div>
     <center>
-      <form action="../php/login.php" method="post">
-        Name:<br> <input type="text" name="Name"> <br>
+      <form >
+        Name:<br> <input type="text" name="Name" id="naam"> <br>
 
-      Email:<br> <input type="text" name="Email"> <br>
+      Email:<br> <input type="text" name="Email" id="e"> <br>
 
-	  Password:<br> <input type="password" name="Password"> <br><br>
+	  Password:<br> <input type="password" name="Password" id="pwd"> <br><br>
 
-        <input type="button" value="Sign Up" onclick="window.location.href='./html/mingle.html'" />
+        <input type="button" value="Sign Up" id="signUp" onclick="signIn()" />
+        <input type="button" value="Login" id="login" onclick="log()" />
+
     <br>
         <br>
 
       </form>
     </center>
   </div>
+
+
+
+  <script>
+
+function signIn()
+{
+
+  var check=document.getElementById("e").value;
+  if(check.includes("@purdue.edu"))
+
+  {
+
+  $.post("../php/signup.php",
+    {
+
+
+
+      name: document.getElementById("naam").value,
+      email: document.getElementById("e").value,
+      password: document.getElementById("pwd").value
+
+    },
+      function(data, status) {
+        alert("Signed Up !");
+        //alert("data: " + data);
+      });
+
+    }
+    else {
+      alert("PLEASE PUT VALID EMAIL!")
+    }
+
+}
+
+
+
+
+  </script>
+
+
+
+  <script>
+
+function log()
+{
+  $.post("../php/login.php", async=false,
+      function(data, status)
+      {
+        if(data=="Login successful")
+        {
+          alert("OK");
+
+        }
+        else {
+
+            alert("OOPS");
+
+
+      }
+
+});
+}
+
+  </script>
 
 
 </body>
