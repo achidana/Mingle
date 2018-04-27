@@ -39,17 +39,21 @@ $lng = (float) $_POST['lng'];
 
 $sql = "INSERT INTO mingle.events_info (name,email,start,end,url,lat,lng) VALUES ('$name', '$email', '$start','$end','$email','$lat','$lng')";
 
-console.log($sql);
+// echo "query: ";
+// echo $sql;
+// echo "               ";
+
 //$sql = "INSERT INTO events_info (name,location,email,type) VALUES ('$name','$loc','$email','$type')";
 //$sql = "INSERT INTO mingle.events_info (name,email,start,end,url,lat,lng) VALUES ('Pancake Night', 'shreveclub@purdue.edu', '2018-04-24 21:00:00','2018-04-24 22:00:00','www.purdue.edu',40.3,-86.7)";
 
-if($name == NULL || $email == NULL || $start == NULL || $end == NULL ||  $lat == NULL || $lng == NULL) {
-  $conn->close();
-}
-else {
+// if($name == NULL || $email == NULL || $start == NULL || $end == NULL ||  $lat == NULL || $lng == NULL) {
+//   $conn->close();
+// }
+// else {
   $insert = $conn->query($sql);
 
   if($insert) {
+    // echo "inserted";
   	console.log("successful");
   }
   else {
@@ -57,7 +61,7 @@ else {
   }
 
   $conn->close();
-}
+// }
 
 
 ?>
