@@ -39,7 +39,6 @@
 
 
 
-// jQUERY FOR GETTING INFO
 <script>
 //document.getElementById("lat_hid").innerHTML="asdas";
 //document.getElementById("lng_hid").value=(passLong.toString());
@@ -58,7 +57,7 @@ function makeAjaxCall() {
   //     }
   // });
 
-          $.post("../php/mingle.php",
+          $.post("../php/mingle.php", async=false,
               function(data, status) {
                 data = JSON.parse(data)
                 // alert(data[0]["lat"]);
@@ -130,7 +129,7 @@ function createMarker(data, i, latlng) {
   m.setMap(map);
 
   var info = new google.maps.InfoWindow({
-      content: '<IMG BORDER="0" ALIGN="Center"> <h3> Name of event: ' + data[i]['name'] + '</h3> <h4>Start: ' + data[i]['start'] + '</h4> <h4>End: '+ data[i]['end'] + '</h4>'
+      content: '<h3> Event name: ' + data[i]['name'] + '</h3> <h4>Start: ' + data[i]['start'] + '</h4> <h4>End: '+ data[i]['end'] + '</h4>'
   });
 
   m.addListener('click', function(){
@@ -163,7 +162,6 @@ $('#close').on('click', function () {
 </script> -->
 
 
-// MAKES THE MAP
 <script>
 var passLat=0;
 var passLong=0;
