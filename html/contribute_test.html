@@ -47,13 +47,13 @@
     <button id="close" style="float: right;">X</button>
     <form action="../php/contribute.php">
 
-      Name:<br> <input type="text" name="name" placeholder="Event Name"> <br>
-      Email:<br> <input type="text" name="email" placeholder="username@purdue.edu"> <br>
-      Start Date:<br> <input type="text" name="startDate" placeholder="YYYY-MM-DD"><br>
-      End Date:<br> <input type="text" name="endDate" placeholder="YYYY-MM-DD"><br>
-      Start Time:<br> <input type="text" name="startTime" placeholder="HH:MM:SS"><br>
-      End Time:<br> <input type="text" name="endTime" placeholder="HH:MM:SS"><br>
-      URL:<br> <input type="text" name="url" placeholder="www.url.com"><br><br>
+      Name:<br> <input type="text" name="name" placeholder="Event Name" id="naam">  <br>
+      Email:<br> <input type="text" name="email" placeholder="username@purdue.edu" id="e"> <br>
+      Start Date:<br> <input type="text" name="startDate" placeholder="YYYY-MM-DD" id="sdate"><br>
+      End Date:<br> <input type="text" name="endDate" placeholder="YYYY-MM-DD" id="edate"><br>
+      Start Time:<br> <input type="text" name="startTime" placeholder="HH:MM:SS" id=stime><br>
+      End Time:<br> <input type="text" name="endTime" placeholder="HH:MM:SS" id="etime"><br>
+      URL:<br> <input type="text" name="url" placeholder="www.url.com" id="u"><br><br>
 
       <!-- <input type="text" id="lat_hid" name="lat">
       <input type="text" id="lng_hid" name="lng"> -->
@@ -86,8 +86,14 @@ function makeAjaxCall() {
     $.post("../php/contribute.php",
       {
         lat: passLat,
-        lng: passLong
-
+        lng: passLong,
+        name: document.getElementById("naam").value,
+        email: document.getElementById("e").value,
+        startDate: document.getElementById("sdate").value,
+        endDate: document.getElementById("edate").value,
+        startTime: document.getElementById("stime").value,
+        endTime: document.getElementById("etime").value,
+        url: document.getElementById("u").value
       },
         function(data, status) {
           alert("data: " + data);
