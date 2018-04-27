@@ -16,9 +16,7 @@
 
  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
-</head>
-
-
+</head>l
 
 <body>
 
@@ -36,16 +34,13 @@
 </nav>
 
 
-
-
-
  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
 
 
 <div class="center hideform">
     <button id="close" style="float: right;">X</button>
-    <form action="../php/contribute.php">
+    <form>
 
       Name:<br> <input type="text" name="name" placeholder="Event Name" id="naam">  <br>
       Email:<br> <input type="text" name="email" placeholder="username@purdue.edu" id="e"> <br>
@@ -85,6 +80,7 @@ function makeAjaxCall() {
 
     $.post("../php/contribute.php",
       {
+        // var x= document.getElementById("naam").value;
         lat: passLat,
         lng: passLong,
         name: document.getElementById("naam").value,
@@ -96,9 +92,9 @@ function makeAjaxCall() {
         url: document.getElementById("u").value
       },
         function(data, status) {
-          alert("data: " + data);
+          alert("Your event has been added! See you there!");
+          //alert("data: " + data);
         });
-
 
 }
 
