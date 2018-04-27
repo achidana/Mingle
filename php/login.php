@@ -33,21 +33,4 @@ else {
   $conn->close();
 }
 
-  // while($row = mysqli_fetch_assoc($result))
-  //     $test[] = $row;
-
-  //echo json_encode($test);
-
-
-  // if($insert) {
-  //   // echo "inserted";
-  // 	console.log("successful");
-  // }
-  // else {
-  // 	console.log("failed");
-  // }
-
-
-
-
 ?>
