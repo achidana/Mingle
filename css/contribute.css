@@ -82,7 +82,7 @@
           position:absolute;
           bottom:2%;
           color: #fff;
-          background-color: #4d90fe;
+          background-color: black;
           padding: 11px;
 
           border: 1px solid transparent;
@@ -95,9 +95,10 @@
           vertical-align: middle;
           width:90%;
           left:5%;
+		  
           text-align:center;
           text-decoration:none;
-
+		  background-color: #3CBC8D;
 
           margin:0px auto;}
       
@@ -118,6 +119,7 @@
           left:5%;
           text-align:center;
           text-decoration:none;
+			background-color: #3CBC8D;
 
 
           margin:0px auto;}
