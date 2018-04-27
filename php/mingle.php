@@ -29,6 +29,7 @@ AND lng != 0";
   $result = $conn->query($sql);
   while($row = mysqli_fetch_assoc($result))
       $test[] = $row;
+
   echo json_encode($test);
 
   //echo json_encode($insert);

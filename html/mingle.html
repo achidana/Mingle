@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" content="initial-scale=1.0, user-scalable=no" />
   <link rel="stylesheet" href="../css/contribute.css" />
-  <title>Contribute to Mingle</title>
+  <title>Ready to Mingle</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -27,8 +27,8 @@
       <li><a href="../index.html">Home</a></li>
           </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li class="active"><a href="./contribute.html"> CONTRIBUTE</a></li>
-      <li><a href="./mingle.html"> MINGLE</a></li>
+      <li class="active"><a href="./mingle.html"> CONTRIBUTE</a></li>
+      <li><a href="./contribute.html"> MINGLE</a></li>
     </ul>
   </div>
 </nav>
@@ -37,6 +37,9 @@
  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
 
+
+
+// jQUERY FOR GETTING INFO
 <script>
 //document.getElementById("lat_hid").innerHTML="asdas";
 //document.getElementById("lng_hid").value=(passLong.toString());
@@ -55,28 +58,46 @@ function makeAjaxCall() {
   //     }
   // });
 
-          $.get("../php/mingle.php",
+          $.post("../php/mingle.php",
               function(data, status) {
-                //alert("Your event has been added! See you there!");
-                // alert("data: " + data);
-                for(var i = 0; i < data.length; i++) {
-                        var latlng = {lat: data[i]['lat'], lng: data[i]['lng']};
-                        var m = new google.maps.Marker({
-                            position: latlng,
-                            map: map
-                          });
+                alert(data);
 
-                        m.setMap(map);
+                // var avgLat = 0;
+                // var avgLng = 0;
+                // for(var i = 0; i < data.length; i++) {
+                //   avgLat += parseFloat(data[i]['lat']);
+                //   avgLng += parseFloat(data[i]['lng']);
+                // }
+                // avgLat = avgLat/parseFloat(i);
+                // avgLng = avgLng/parseFloat(i);
+                //
+                // alert("lat: " + avgLat + " lng: " + avgLng);
 
-                        var info = new google.maps.InfoWindow({
-                            content: '<IMG BORDER="0" ALIGN="Center"> <h3> Name of event: ' + data[i]['name'] + '</h3> <h4>Start: ' + data[i]['start'] + '</h4> <h4>End: '+ data[i]['end'] + '</h4>'
-                        });
+                // var map = new google.maps.Map(document.getElementById('map'), {
+                //     center: {lat: avgLat, lng: avgLng},
+                //     zoom: 10,
+                //     mapTypeId: 'roadmap'
+                // });
 
-                        m.addListener('click', function(){
-                            info.open(map, m)
-                        });
-                        info.close();
-                      }
+              //   for(var i = 0; i < data.length; i++) {
+              //           //var latlng = {lat: parseFloat(data[i]['lat']), lng: parseFloat(data[i]['lng'])};
+              //           var latlng = new google.maps.LatLng(data[i]['lat']),data[i]['lng']));
+              //           var m = new google.maps.Marker({
+              //               position: latlng,
+              //               map: map
+              //             });
+              //
+              //           m.setMap(map);
+              //
+              //           var info = new google.maps.InfoWindow({
+              //               content: '<IMG BORDER="0" ALIGN="Center"> <h3> Name of event: ' + data[i]['name'] + '</h3> <h4>Start: ' + data[i]['start'] + '</h4> <h4>End: '+ data[i]['end'] + '</h4>'
+              //           });
+              //
+              //           m.addListener('click', function(){
+              //               info.open(map, m)
+              //           });
+              //           info.close();
+              //         }
               });
 
   //   $.get("../php/mingle.php",
@@ -113,7 +134,9 @@ function makeAjaxCall() {
 
 </script>
 
-<script >
+
+<!-- // jquery for form
+<script>
 
 $('#show').on('click', function () {
     if(passLat==0)
@@ -130,36 +153,42 @@ $('#close').on('click', function () {
     $('#show').show();
 })
 
-</script>
+</script> -->
 
+
+// MAKES THE MAP
 <script>
 var passLat=0;
 var passLong=0;
+var map;
 
 function contributeMap() {
+
 //console.log("lat= "+currentlat);
-var map = new google.maps.Map(document.getElementById('map'), {
+ map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 30, lng: 30},
           zoom: 10,
           mapTypeId: 'roadmap'
         });
 
 
-if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-   map.setCenter(pos);
-});
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        };
+     map.setCenter(pos);
+    });
+  }
+
 
 // function showPosition(position) {
 //   console.log("lat0= "+position.coords.latitude);
 
 //     currentlat=position.coords.latitude;
 //     currentlong=position.coords.longitude;
-}
+makeAjaxCall();
 
         // Create the search box and link it to the UI element.
 // var input = document.getElementById('pac-input');
@@ -225,8 +254,6 @@ if (navigator.geolocation) {
 //           });
 //           map.fitBounds(bounds);
 //         });
-
-    makeAjaxCall();
 
 }
 
