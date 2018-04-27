@@ -20,39 +20,44 @@ $startDate = $_POST['startDate'];
 $startTime = $_POST['startTime'];
 $start = "$startDate $startTime";
 
-$endDate = $_POST['$endDate'];
-$endTime = $_POST['$endTime'];
+$endDate = $_POST['endDate'];
+$endTime = $_POST['endTime'];
 $end = "$endDate $endTime";
 
 $url = $_POST['url'];
 $lat = (float) $_POST['lat'];
 $lng = (float) $_POST['lng'];
 
-echo "start: ";
-echo $start;
-echo "end: ";
-echo $end;
-echo "lat: ";
-echo $_POST['lat'];
-echo "lng: ";
-echo $_POST['lng'];
+// echo "start: ";
+// echo $start;
+// echo "end: ";
+// echo $end;
+// echo "lat: ";
+// echo $_POST['lat'];
+// echo "lng: ";
+// echo $_POST['lng'];
 
-$sql = "INSERT INTO mingle.events_info (name,email,start,end,url,lat,lng) VALUES ('$name', '$email', '$start','$end','$email',$lat,$lng)";
+$sql = "INSERT INTO mingle.events_info (name,email,start,end,url,lat,lng) VALUES ('$name', '$email', '$start','$end','$email','$lat','$lng')";
 
-echo $sql;
+console.log($sql);
 //$sql = "INSERT INTO events_info (name,location,email,type) VALUES ('$name','$loc','$email','$type')";
 //$sql = "INSERT INTO mingle.events_info (name,email,start,end,url,lat,lng) VALUES ('Pancake Night', 'shreveclub@purdue.edu', '2018-04-24 21:00:00','2018-04-24 22:00:00','www.purdue.edu',40.3,-86.7)";
 
-$insert = $conn->query($sql);
-
-if($insert) {
-	console.log("successful");
+if($name == NULL || $email == NULL || $start == NULL || $end == NULL ||  $lat == NULL || $lng == NULL) {
+  $conn->close();
 }
-
 else {
-	console.log("failed");
+  $insert = $conn->query($sql);
+
+  if($insert) {
+  	console.log("successful");
+  }
+  else {
+  	console.log("failed");
+  }
+
+  $conn->close();
 }
 
-$conn->close();
 
 ?>

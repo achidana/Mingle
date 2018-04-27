@@ -45,7 +45,7 @@
 
 <div class="center hideform">
     <button id="close" style="float: right;">X</button>
-    <form action="../php/contribute.php" method="post">
+    <form action="../php/contribute.php">
 
       Name:<br> <input type="text" name="name" placeholder="Event Name"> <br>
       Email:<br> <input type="text" name="email" placeholder="username@purdue.edu"> <br>
@@ -55,11 +55,9 @@
       End Time:<br> <input type="text" name="endTime" placeholder="HH:MM:SS"><br>
       URL:<br> <input type="text" name="url" placeholder="www.url.com"><br><br>
 
-      <input type="text" id="lat_hid" name="lat">
-       <input type="text" id="lng_hid" name="lng">
-       <input type="submit">
-
-
+      <!-- <input type="text" id="lat_hid" name="lat">
+      <input type="text" id="lng_hid" name="lng"> -->
+      <input type="submit"  onclick="makeAjaxCall()">
 
     </form>
 </div>
@@ -67,18 +65,35 @@
 
 <button id="show">ADD EVENT</button>
 
-<script >
+<script>
 //document.getElementById("lat_hid").innerHTML="asdas";
 //document.getElementById("lng_hid").value=(passLong.toString());
 
-$.ajax({
-url: '../php/contribute.php',
-method: 'POST',
-async: false,
-//ContentType: 'application/json; charset=utf-8',
-//dataType: 'json',
-data: {'lat': passLat, 'lng':passLong},
-success: function(pass) {console.log("PASSED")}});
+function makeAjaxCall() {
+  console.log("im being called");
+  // $.ajax({
+  //     type: "POST",
+  //     url: '../php/contribute.php',
+  //     async: false,
+  //     ContentType: 'application/json; charset=utf-8',
+  //     dataType: 'json',
+  //     data: {lat: passLat.toString(), lng:passLong.toString()},
+  //     success: function() {
+  //       console.log("PASSED")
+  //     }
+  // });
+
+    $.post("../php/contribute.php",
+      {
+        lat: passLat,
+        lng: passLong
+      },
+        function(data, status) {
+          alert("data: " + data);
+        });
+
+
+}
 
 </script>
 
