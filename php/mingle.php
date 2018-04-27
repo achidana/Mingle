@@ -13,26 +13,36 @@ if ($conn->connect_error) {
 }
 //echo "Connected successfully";
 
-$loc = $_POST['Location'];
+$sql = "SELECT * FROM mingle.events_info
+WHERE name != ''
+AND start != '0000-00-00 00:00:00'
+AND end != '0000-00-00 00:00:00'
+AND lat != 0
+AND lng != 0";
 
-$type = $_POST['Type'];
+// $sql = "SELECT * FROM mingle.events_info WHERE name LIKE 'Pancake%' AND start != '0000-00-00 00:00:00' AND end != '0000-00-00 00:00:00'";
 
+// if($name == NULL || $email == NULL || $start == NULL || $end == NULL ||  $lat == NULL || $lng == NULL) {
+//   $conn->close();
+// }
+// else {
+  $result = $conn->query($sql);
+  while($row = mysqli_fetch_assoc($result))
+      $test[] = $row;
+  echo json_encode($test);
 
+  //echo json_encode($insert);
 
-//$sql = "INSERT INTO user_info (name,location,email,type) VALUES ('$name','$loc','$email','$type')";
-//SELECT * FROM mingle.events_info
-//WHERE lat > (40.3 - .1) AND (lat < 40.3 + .1)
+  if($insert) {
+    // echo "inserted";
+  	console.log("successful");
+  }
+  else {
+  	console.log("failed");
+  }
 
-$insert = $conn->query($sql);
+  $conn->close();
+// }
 
-if($insert) {
-	console.log("successful");
-}
-
-else {
-	console.log("failed");
-}
-
-$conn->close();
 
 ?>
