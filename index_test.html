@@ -16,11 +16,11 @@
   <!-- Program Modules -->
   <script type="text/javascript" src="../js/map.js"></script>
   <link rel="stylesheet" href="../css/css.css">
-
 </head>
 <body>
 
-  <div id="bar"></div>
+  <div id="n">
+  </div>
 
 
 
@@ -91,28 +91,21 @@ function signIn() {
 <script>
 
 function log() {
-  $.post("./php/login.php",{
-      name: document.getElementById("naam").value,
-      email: document.getElementById("e").value,
-      password: document.getElementById("pwd").value
-      },
-      function(data, status) {
-        data = JSON.parse(data);
+
+document.getElementById("n").innerHTML = '<nav class="navbar navbar-inverse"> <div class="container-fluid"> <ul class="nav navbar-nav"> <li class="active"><a href="./index.html">Home</a></li> </ul> <ul class="nav navbar-nav navbar-right"> <li><a href="./html/contribute_test.html"> CONTRIBUTE</a></li> <li><a href="./html/mingle.html"> MINGLE</a></li> </ul> </div> </nav>';
+        //data = JSON.parse(data);
         // alert(data);
         // console.log(data);
-        if(data == "Login successful") {
-          alert("Login successful");
-
-          document.getElementById("bar").innerHTML = '<nav class="navbar navbar-inverse"> <div class="container-fluid"> <ul class="nav navbar-nav"> <li class="active"><a href="./index.html">Home</a></li> </ul> <ul class="nav navbar-nav navbar-right"> <li><a href="./html/contribute_test.html"> CONTRIBUTE</a></li> <li><a href="./html/mingle.html"> MINGLE</a></li> </ul> </div> </nav>';
+        //if(data == "Login successful") {
+          //alert("Login successful");
 
 
-        }
-        else {
-            alert("OOPS, LOGIN FAILED");
-        }
 
-    });
-}
+
+
+
+    }
+
 
   </script>
 
